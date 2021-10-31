@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct SliderWithTextField: View {
-    @State var sliderValue: Double
-    let sliderColor: Color
-    @State private var textValue = "0"
     
+    @Binding var sliderValue: Double
+    @State private var textValue = "0"
+    let sliderColor: Color
     
     var body: some View {
+        
         HStack {
             Text("\(lround(sliderValue))")
                 .frame(width: 40, height: 8)
@@ -22,18 +23,13 @@ struct SliderWithTextField: View {
                 .accentColor(sliderColor)
             
             NumberTextFieldView(value: $textValue, valueForSlider: $sliderValue)
-            
         }
-        .padding()
-        Spacer()
+        .background(.white)
+        .cornerRadius(10.0)
     }
 }
 
-struct SliderWithTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        SliderWithTextField(sliderValue: 50, sliderColor: .red)
-    }
-}
+
 
 
 struct NumberTextFieldView: View {
